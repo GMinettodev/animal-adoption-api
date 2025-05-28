@@ -17,8 +17,8 @@ cp .env.example .env
 # Edit the .env with the settings of your MySQL
 
 # Create the database and the tables
-mysql -u root -p < scripts/db.sql
-mysql -u root -p < scripts/schema.sql
+mysql -u root -p < src/database/create_database.sql
+mysql -u root -p < src/database/create_tables.sql
 
 # Run the application
 npm run dev
