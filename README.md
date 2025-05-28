@@ -1,10 +1,10 @@
 # 🐶Animal adoption api
+
 This is a **RESTful API** developed with **NodeJS**, **Express** and **MySQL** with the functionalities of sign-up of users and pets, management of users ands pets and pets adoption.
 
----
-
 # 📥Instalation process
-``` bash
+
+```bash
 # Clone the repository
 git clone https://github.com/GMinettodev/animal-adoption-api.git
 cd animal-adoption-api
@@ -22,3 +22,4 @@ mysql -u root -p < scripts/schema.sql
 
 # Run the application
 npm run dev
+```
