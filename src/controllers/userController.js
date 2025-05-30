@@ -1,4 +1,15 @@
+const UserModel = require('../models/userModel');
+
 class UserController {
+  static async getUsers(req, res) {
+    try {
+      const users = await UserModel.getUsers();
+      return res.json(users);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static login(req, res) {
     try {
       return res.status(200).send('Welcome to the public API!');

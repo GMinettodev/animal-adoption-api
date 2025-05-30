@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/login', UserController.login);
 
 // Protected routes
-// router.get('/', UserController.getUsers);
+router.get('/', UserController.getUsers);
 // router.get('/:id', UserController.getUserByID);
 // router.put('/:id', UserController.updateUser);
 // router.delete('/:id', UserController.deleteUser);

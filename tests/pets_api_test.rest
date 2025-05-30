@@ -1,5 +1,9 @@
 @baseURL = http://localhost:3000
 
 ### Public route
-GET {{baseURL}}/public/home
+GET {{baseURL}}/
+Content-Type: application/json
+
+### Get users
+GET {{baseURL}}/users
 Content-Type: application/json
