@@ -1,5 +1,5 @@
-class PublicController {
-  static home(req, res) {
+class UserController {
+  static login(req, res) {
     try {
       return res.status(200).send('Welcome to the public API!');
     } catch (error) {
@@ -11,4 +11,4 @@ class PublicController {
   }
 }
 
-module.exports = PublicController;
+module.exports = UserController;

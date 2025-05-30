@@ -3,9 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const app = express();
 const errorMiddleware = require('./middlewares/errorMiddleware');
-const publicRoutes = require('./routes/publicRoutes');
-// const authRoutes = require('./routes/authRoutes');
-// const protectedRoutes = require('./routes/protectedRoutes');
+const userRouter = require('./routes/userRoutes');
+const petRouter = require('./routes/userRoutes');
+const adoptionRouter = require('./routes/adoptionRoutes');
 
 // Middlewares (global)
 app.use(cors());
@@ -13,12 +13,12 @@ app.use(helmet());
 app.use(express.json());
 
 // Routes
-app.use('/public', publicRoutes);
-// app.use('/auth', authRoutes);
-// app.use('/protected', protectedRoutes);
+app.use('/users', userRouter);
+app.use('/pets', petRouter);
+app.use('/adoptions', adoptionRouter);
 
 app.get('/', (req, res) => {
-  res.redirect('/public/home');
+  res.redirect('/users/login');
 });
 
 // Error processing Middleware
