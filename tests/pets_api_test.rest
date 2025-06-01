@@ -1,9 +1,59 @@
 @baseURL = http://localhost:3000
+@userId = 4
+@token = your_token
 
-### Public route
-GET {{baseURL}}/
+#####################
+### Public routes ###
+#####################
+### Register
+POST {{baseURL}}/users/register
 Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "password": "senha123",
+    "phone": "123456789110",
+    "role": "admin"
+}
+
+### Login
+POST {{baseURL}}/users/login
+Content-Type: application/json
+
+{
+    "email": "jhon@example.com",
+    "password": "senha123"
+}
+
+########################
+### Protected routes ###
+########################
 
 ### Get users
 GET {{baseURL}}/users
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Get user by id
+GET {{baseURL}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Update user
+PUT {{baseURL}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Jane Doene",
+  "email": "jane.doene@example.com",
+  "password": "newpassword123",
+  "phone": "1234567890",
+  "role": "admin"
+}
+
+### Delete user
+DELETE {{baseURL}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}

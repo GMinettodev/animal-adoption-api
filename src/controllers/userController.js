@@ -1,23 +1,84 @@
 const UserModel = require('../models/userModel');
+const UserService = require('../services/userService');
+const createError = require('http-errors');
 
 class UserController {
-  static async getUsers(req, res) {
+  static async register(req, res, next) {
     try {
-      const users = await UserModel.getUsers();
-      return res.json(users);
+      const result = await UserService.registerUser(req.body);
+      return res.json(result);
     } catch (err) {
-      next(err);
+      return next(err);
     }
   }
 
-  static login(req, res) {
+  static async login(req, res, next) {
     try {
-      return res.status(200).send('Welcome to the public API!');
-    } catch (error) {
-      return res.status(500).json({
-        message: 'Error accessing public route',
-        error: error.message,
+      const result = await UserService.loginUser(req.body);
+      return res.status(200).json(result);
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  static async getUsers(req, res, next) {
+    try {
+      const users = await UserModel.findAll();
+      return res.json(users);
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  static async getUserById(req, res, next) {
+    try {
+      const id = req.params.id;
+      const user = await UserModel.findById(id);
+      if (!user) {
+        return next(createError(404, 'User not found'));
+      }
+      return res.json(user);
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  static async editUser(req, res, next) {
+    const { id } = req.params;
+    const { name, email, password, phone, role } = req.body;
+
+    try {
+      const result = await UserModel.update(id, {
+        name,
+        email,
+        password,
+        phone,
+        role,
       });
+
+      if (result.affectedRows === 0) {
+        return next(createError(404, 'User not found'));
+      }
+
+      return res.status(200).json({ message: 'User updated successfully' });
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  static async removeUser(req, res, next) {
+    const { id } = req.params;
+
+    try {
+      const result = await UserModel.delete(id);
+
+      if (result.affectedRows === 0) {
+        return next(createError(404, 'User not found'));
+      }
+
+      return res.status(200).json({ message: 'User deleted successfully' });
+    } catch {
+      return next(createError(500, 'Error deleting user'));
     }
   }
 }

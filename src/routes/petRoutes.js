@@ -12,4 +12,4 @@ router.get('/pets/available', PetController.getAvailablePets);
 // router.put('/:id', PetController.updatePet);
 // router.delete('/:id', PetController.deletePet);
 
-modules.exports = router;
+module.exports = router;
