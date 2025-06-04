@@ -44,23 +44,9 @@ class UserController {
   }
 
   static async editUser(req, res, next) {
-    const { id } = req.params;
-    const { name, email, password, phone, role } = req.body;
-
     try {
-      const result = await UserModel.update(id, {
-        name,
-        email,
-        password,
-        phone,
-        role,
-      });
-
-      if (result.affectedRows === 0) {
-        return next(createError(404, 'User not found'));
-      }
-
-      return res.status(200).json({ message: 'User updated successfully' });
+      const result = await UserService.changeUser(req.params.id, req.body);
+      return res.json(result);
     } catch (err) {
       return next(err);
     }

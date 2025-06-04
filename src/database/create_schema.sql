@@ -18,7 +18,6 @@ VALUES
         'adopter'
     );
 
--- Add more users as needed
 -- Insert sample pets
 INSERT INTO
     pets (name, age, species, size, status, description)
@@ -60,7 +59,5 @@ VALUES
 INSERT INTO
     adoptions (user_id, pet_id, adoption_date)
 VALUES
-    (2, 2, '2024-01-15'), -- Adopter user with id 2 adopted pet with id 2
+    (2, 2, '2024-01-15'),
     (2, 4, '2024-02-01');
-
--- Same user adopted another pet

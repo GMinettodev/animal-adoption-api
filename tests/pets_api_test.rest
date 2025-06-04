@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3000
-@userId = 4
-@token = your_token
+@userId = 1
+@token = jwt_token
 
 #####################
 ### Public routes ###
@@ -22,7 +22,7 @@ POST {{baseURL}}/users/login
 Content-Type: application/json
 
 {
-    "email": "jhon@example.com",
+    "email": "jane.doe@example.com",
     "password": "senha123"
 }
 
