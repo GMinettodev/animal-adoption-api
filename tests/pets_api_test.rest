@@ -1,10 +1,16 @@
 @baseURL = http://localhost:3000
-@userId = 1
-@token = jwt_token
+@userId = 2
+@petId = 2
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDk1OTQ1MzMsImV4cCI6MTc0OTU5ODEzM30.Uf6UU1canpdIzbdHVyJE6a1SG0UJWn4KbbFmAVsA2G0
 
 #####################
 ### Public routes ###
 #####################
+
+### Get available pets
+GET {{baseURL}}/pets/available
+Content-Type: application/json
+
 ### Register
 POST {{baseURL}}/users/register
 Content-Type: application/json
@@ -29,6 +35,8 @@ Content-Type: application/json
 ########################
 ### Protected routes ###
 ########################
+
+######### Users ########
 
 ### Get users
 GET {{baseURL}}/users
@@ -55,5 +63,16 @@ Authorization: Bearer {{token}}
 
 ### Delete user
 DELETE {{baseURL}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+######### Pets ########
+### Get pets
+GET {{baseURL}}/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Get pet by id
+GET {{baseURL}}/pets/{{petId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}

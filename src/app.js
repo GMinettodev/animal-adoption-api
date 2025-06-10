@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const app = express();
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const userRouter = require('./routes/userRoutes');
-const petRouter = require('./routes/userRoutes');
+const petRouter = require('./routes/petRoutes');
 const adoptionRouter = require('./routes/adoptionRoutes');
 
 // Middlewares (global)
