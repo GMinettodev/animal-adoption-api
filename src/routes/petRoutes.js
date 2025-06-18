@@ -22,7 +22,12 @@ router.get(
   authorizeRole('admin'),
   PetController.getPetById
 );
-// router.post('/', PetController.addPet);
+router.post(
+  '/',
+  authenticateToken,
+  authorizeRole('admin'),
+  PetController.addPet
+);
 // router.put('/:id', PetController.updatePet);
 // router.delete('/:id', PetController.deletePet);
 

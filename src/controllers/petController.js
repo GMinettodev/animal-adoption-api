@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const PetModel = require('../models/petModel');
+const PetService = require('../services/petService');
 
 class PetController {
   static async getAvailablePets(req, res, next) {
@@ -33,6 +34,16 @@ class PetController {
       return res.json(pet);
     } catch (err) {
       return next(err);
+    }
+  }
+
+  static async addPet(req, res, next) {
+    try {
+      const petData = req.body;
+      const newPetId = await PetService.createPet(petData);
+      res.json({ id: newPetId });
+    } catch (err) {
+      next(err);
     }
   }
 }

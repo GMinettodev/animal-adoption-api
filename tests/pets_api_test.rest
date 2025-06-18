@@ -1,7 +1,7 @@
 @baseURL = http://localhost:3000
 @userId = 2
 @petId = 2
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDk1OTQ1MzMsImV4cCI6MTc0OTU5ODEzM30.Uf6UU1canpdIzbdHVyJE6a1SG0UJWn4KbbFmAVsA2G0
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTAyMDc1MTUsImV4cCI6MTc1MDIxMTExNX0.9gklxLGatlt3WCcCplj6vRrWXMXRniIfeIKF4706Zhc
 
 #####################
 ### Public routes ###
@@ -76,3 +76,17 @@ Authorization: Bearer {{token}}
 GET {{baseURL}}/pets/{{petId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+### Add Pet
+POST {{baseURL}}/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Buddy",
+    "age": 3,
+    "species": "Dog",
+    "size": "Medium",
+    "status": "Available",
+    "description": "Friendly and energetic"
+}
