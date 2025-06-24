@@ -46,6 +46,31 @@ class PetController {
       next(err);
     }
   }
+
+  static async editPet(req, res, next) {
+    try {
+      const result = await PetService.changePet(req.params.id, req.body);
+      return res.json(result);
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  static async removePet(req, res, next) {
+    const { id } = req.params;
+
+    try {
+      const result = await PetService.deletePet(id);
+
+      if (result.affectedRows === 0) {
+        return next(createError(404, 'Pet not found'));
+      }
+
+      return res.status(200).json({ message: 'Pet deleted successfully' });
+    } catch {
+      return next(createError(500, 'Error deleting pet'));
+    }
+  }
 }
 
 module.exports = PetController;

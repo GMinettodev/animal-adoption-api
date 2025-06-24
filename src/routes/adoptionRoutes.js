@@ -1,9 +1,23 @@
 const express = require('express');
-// const AdoptionController = require('../controllers/adoptionController');
+const AdoptionController = require('../controllers/adoptionController');
+const {
+  authenticateToken,
+  authorizeRole,
+} = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 // Protected routes
-// router.get('/', AdoptionController.getAdoptions);
-// router.post('/', AdoptionController.addAdoption);
+router.get(
+  '/',
+  authenticateToken,
+  authorizeRole('admin'),
+  AdoptionController.getAdoptions
+);
+router.post(
+  '/',
+  authenticateToken,
+  authorizeRole('admin'),
+  AdoptionController.adopt
+);
 
 module.exports = router;

@@ -26,6 +26,20 @@ class PetModel {
     );
     return rows.insertId;
   }
+
+  static async update(id, pet) {
+    const { name, age, species, size, status, description } = pet;
+    const [rows] = await db.query(
+      'UPDATE pets SET name = ?, age = ?, species = ?, size = ?, status = ?, description = ? WHERE id =  ?',
+      [name, age, species, size, status, description, id]
+    );
+    return rows;
+  }
+
+  static async delete(id) {
+    const [result] = await db.query('DELETE FROM pets WHERE id = ?', [id]);
+    return result;
+  }
 }
 
 module.exports = PetModel;

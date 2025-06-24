@@ -1,7 +1,7 @@
 @baseURL = http://localhost:3000
 @userId = 2
 @petId = 2
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTAyMDc1MTUsImV4cCI6MTc1MDIxMTExNX0.9gklxLGatlt3WCcCplj6vRrWXMXRniIfeIKF4706Zhc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTA4MDI0NjUsImV4cCI6MTc1MDgwNjA2NX0.zmyg11V7Uvma-cbB-xwBwzv5y6T1tb5hfnETs-WxSpM
 
 #####################
 ### Public routes ###
@@ -89,4 +89,40 @@ Authorization: Bearer {{token}}
     "size": "Medium",
     "status": "Available",
     "description": "Friendly and energetic"
+}
+
+### Edit Pet
+PUT {{baseURL}}/pets/{{petId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Joker",
+    "age": 4,
+    "species": "Cat",
+    "size": "Large",
+    "status": "Available",
+    "description": "Friendly and energetic"
+}
+
+### Delete pet
+DELETE {{baseURL}}/pets/{{petId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+######### Adoptions ########
+### Get adoptions
+GET {{baseURL}}/adoptions
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Adopt
+POST {{baseURL}}/adoptions
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user_id": 3,
+    "pet_id": 1,
+    "adoption_date": "2025-06-24"
 }

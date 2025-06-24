@@ -16,19 +16,33 @@ router.get(
   authorizeRole('admin'),
   PetController.getPets
 );
+
 router.get(
   '/:id',
   authenticateToken,
   authorizeRole('admin'),
   PetController.getPetById
 );
+
 router.post(
   '/',
   authenticateToken,
   authorizeRole('admin'),
   PetController.addPet
 );
-// router.put('/:id', PetController.updatePet);
-// router.delete('/:id', PetController.deletePet);
+
+router.put(
+  '/:id',
+  authenticateToken,
+  authorizeRole('admin'),
+  PetController.editPet
+);
+
+router.delete(
+  '/:id',
+  authenticateToken,
+  authorizeRole('admin'),
+  PetController.removePet
+);
 
 module.exports = router;
