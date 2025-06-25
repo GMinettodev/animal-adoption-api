@@ -19,7 +19,7 @@ class PetModel {
   }
 
   static async create(pet) {
-    const { name, age, species, size, status, description } = pet;
+    const { name, age, species, size, status = 'available', description } = pet;
     const [rows] = await db.query(
       'INSERT INTO pets (name, age, species, size, status, description) VALUES (?, ?, ?, ?, ?, ?)',
       [name, age, species, size, status, description]

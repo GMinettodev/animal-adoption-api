@@ -1,7 +1,7 @@
 @baseURL = http://localhost:3000
 @userId = 2
 @petId = 2
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmUuZG9lQGV4YW1wbGUuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkxMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTA4MDI0NjUsImV4cCI6MTc1MDgwNjA2NX0.zmyg11V7Uvma-cbB-xwBwzv5y6T1tb5hfnETs-WxSpM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsIm5hbWUiOiJDbGFyYSBTb2FyZXMiLCJlbWFpbCI6ImNsYXJhX2Fkb3B0ZXJAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTExMCIsInJvbGUiOiJhZG9wdGVyIiwiaWF0IjoxNzUwODkzMDE2LCJleHAiOjE3NTA4OTY2MTZ9.ebvS-1SYC5sKUeczw1PUWaFgDK01m_93kLFfux2v2s4
 
 #####################
 ### Public routes ###
@@ -11,26 +11,59 @@
 GET {{baseURL}}/pets/available
 Content-Type: application/json
 
-### Register
-POST {{baseURL}}/users/register
+### Register user
+POST {{baseURL}}/users/
 Content-Type: application/json
 
 {
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com",
+    "name": "John Smith",
+    "email": "john.smith@example.com",
     "password": "senha123",
     "phone": "123456789110",
     "role": "admin"
 }
 
-### Login
-POST {{baseURL}}/users/login
+### Register user with invalid role
+POST {{baseURL}}/users/
+Content-Type: application/json
+
+{
+    "name": "Jonathan Jones",
+    "email": "supermoad_2@example.com",
+    "password": "senha123",
+    "phone": "123456789110",
+    "role": "moderator"
+}
+
+### Register user with no role (will assign default "adopter")
+POST {{baseURL}}/users/
+Content-Type: application/json
+
+{
+    "name": "Clara Soares",
+    "email": "clara_adopter@example.com",
+    "password": "senha123",
+    "phone": "123456789110"
+}
+
+### Login admin
+POST {{baseURL}}/login
 Content-Type: application/json
 
 {
     "email": "jane.doe@example.com",
     "password": "senha123"
 }
+
+### Login adopter
+POST {{baseURL}}/login
+Content-Type: application/json
+
+{
+    "email": "clara_adopter@example.com",
+    "password": "senha123"
+}
+
 
 ########################
 ### Protected routes ###
@@ -87,7 +120,36 @@ Authorization: Bearer {{token}}
     "age": 3,
     "species": "Dog",
     "size": "Medium",
-    "status": "Available",
+    "status": "available",
+    "description": "Friendly and energetic"
+}
+
+### Add Pet without status will assign available by default
+POST {{baseURL}}/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Buddy",
+    "age": 3,
+    "species": "Dog",
+    "size": "Medium",
+    "status": "available",
+    "description": "Friendly and energetic"
+}
+
+
+### Add Pet with adopted as the status
+POST {{baseURL}}/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Buddy",
+    "age": 3,
+    "species": "Dog",
+    "size": "Medium",
+    "status": "a",
     "description": "Friendly and energetic"
 }
 

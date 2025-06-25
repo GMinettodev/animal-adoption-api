@@ -16,7 +16,7 @@ router.get(
 router.post(
   '/',
   authenticateToken,
-  authorizeRole('admin'),
+  authorizeRole('adopter'),
   AdoptionController.adopt
 );
 

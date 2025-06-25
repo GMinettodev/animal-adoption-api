@@ -13,7 +13,7 @@ app.use(helmet());
 app.use(express.json());
 
 // Routes
-app.use('/users', userRouter);
+app.use('/', userRouter); // Prefix /users not added beucause the of the route /login
 app.use('/pets', petRouter);
 app.use('/adoptions', adoptionRouter);
 

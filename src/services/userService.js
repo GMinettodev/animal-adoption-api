@@ -4,14 +4,25 @@ const UserModel = require('../models/userModel');
 const createError = require('http-errors');
 
 class UserService {
+  static validRoles = ['adopter', 'admin'];
+
+  static isRoleValid(role) {
+    return UserService.validRoles.includes(role);
+  }
+
   static async registerUser(user) {
-    const { email, password } = user;
+    const { email, password, role = 'adopter' } = user;
 
     const existing = await UserModel.findByEmail(email);
     if (existing) {
       throw createError(400, 'User already exists');
     }
-
+    
+    // Validates the role only if it's provided
+    if (user.role && !UserService.isRoleValid(user.role)) {
+      throw createError(400, `Invalid role: ${role}`);
+    }
+    
     const hashed = await bcrypt.hash(password, 10);
 
     user.password = hashed;

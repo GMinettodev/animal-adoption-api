@@ -8,19 +8,19 @@ const {
 
 // Public routes
 router.post('/login', UserController.login);
-router.post('/register', UserController.register);
+router.post('/users/', UserController.register);
 
 // Protected routes
 router.get(
-  '/',
+  '/users/',
   authenticateToken,
   authorizeRole('admin'),
   UserController.getUsers
 );
-router.get('/:id', authenticateToken, UserController.getUserById);
-router.put('/:id', authenticateToken, UserController.editUser);
+router.get('/users/:id', authenticateToken, UserController.getUserById);
+router.put('/users/:id', authenticateToken, UserController.editUser);
 router.delete(
-  '/:id',
+  '/users/:id',
   authenticateToken,
   authorizeRole('admin'),
   UserController.removeUser
