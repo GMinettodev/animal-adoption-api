@@ -2,7 +2,7 @@ const db = require('../config/database');
 
 class UserModel {
   static async create(user) {
-    const { name, email, password, phone, role = 'adopter'} = user; // Defines the default value of the role as adopter if it's not informed in the request
+    const { name, email, password, phone, role = 'adopter' } = user; // Defines the default value of the role as adopter if it's not informed in the request
     const [rows] = await db.query(
       'INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)',
       [name, email, password, phone, role]
@@ -11,7 +11,9 @@ class UserModel {
   }
 
   static async findAll() {
-    const [rows] = await db.query('SELECT * FROM users');
+    const [rows] = await db.query(
+      'SELECT id, name, email, phone, role FROM users'
+    );
     return rows;
   }
 
@@ -21,7 +23,7 @@ class UserModel {
   }
 
   static async findByEmail(email) {
-    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [  
+    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [
       email,
     ]);
     return rows[0];

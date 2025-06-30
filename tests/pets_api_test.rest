@@ -1,7 +1,7 @@
 @baseURL = http://localhost:3000
-@userId = 2
-@petId = 2
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsIm5hbWUiOiJDbGFyYSBTb2FyZXMiLCJlbWFpbCI6ImNsYXJhX2Fkb3B0ZXJAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTExMCIsInJvbGUiOiJhZG9wdGVyIiwiaWF0IjoxNzUwODkzMDE2LCJleHAiOjE3NTA4OTY2MTZ9.ebvS-1SYC5sKUeczw1PUWaFgDK01m_93kLFfux2v2s4
+@userId = 7
+@petId = 3
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MTI0NzEwMiwiZXhwIjoxNzUxMjUwNzAyfQ.FTKl7WJqJ273Z03ISNXKr_DK3NtoT9j2B2GUR8R-DxU
 
 #####################
 ### Public routes ###
@@ -16,8 +16,8 @@ POST {{baseURL}}/users/
 Content-Type: application/json
 
 {
-    "name": "John Smith",
-    "email": "john.smith@example.com",
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
     "password": "senha123",
     "phone": "123456789110",
     "role": "admin"
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 {
     "name": "Clara Soares",
-    "email": "clara_adopter@example.com",
+    "email": "clara_a2daopter@example.com",
     "password": "senha123",
     "phone": "123456789110"
 }
@@ -82,13 +82,13 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### Update user
-PUT {{baseURL}}/users/{{userId}}
+PUT {{baseURL}}/users/1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Jane Doene",
-  "email": "jane.doene@example.com",
+  "name": "Jane aaaaaa",
+  "email": "jane.aaaaadoene@example.com",
   "password": "newpassword123",
   "phone": "1234567890",
   "role": "admin"
@@ -185,6 +185,6 @@ Authorization: Bearer {{token}}
 
 {
     "user_id": 3,
-    "pet_id": 1,
+    "pet_id": 5,
     "adoption_date": "2025-06-24"
-}
+}   

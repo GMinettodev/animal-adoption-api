@@ -17,36 +17,48 @@ class PetService {
     if (petData.status && !PetService.isStatusValid(petData.status)) {
       throw createError(400, `Invalid status: ${petData.status}`);
     }
-    
+
     const id = await PetModel.create(petData);
 
     return { message: 'Pet created successfully', id };
   }
 
-  static async changePet(id, pet) {
-    const { name, age, species, size, status, description } = pet;
+  static async changePet(id, petData) {
+    const currentPet = await PetModel.findById(id);
 
-    const result = await PetModel.update(id, {
+    if (!currentPet) {
+      throw createError(404, 'Pet not found');
+    }
+
+    const { name, age, species, size, status, description } = petData;
+
+    const updateData = {
       name,
       age,
       species,
       size,
       status,
       description,
-    });
+    };
 
-    if (result.affectedRows === 0) {
-      throw createError(404, 'Pet not found');
+    const result = await PetModel.update(id, updateData);
+
+    if (result.changedRows === 0) {
+      return { message: 'No changes made to the pet data', id };
     }
 
     return { message: 'Pet updated successfully', id };
   }
 
-  static async deletePet(petData) {
-    const id = await PetModel.delete(petData);
+  static async deletePet(id) {
+    const petData = await PetModel.findById(id);
 
-    if (this.isPetAdopted) {
-      throw createError(400, `Cannot delete adopted pet`);
+    if (!petData) {
+      throw createError(404, 'Pet not found');
+    }
+
+    if (this.isPetAdopted(petData)) {
+      throw createError(400, 'Cannot delete adopted pet');
     }
 
     return { message: 'Pet deleted successfully', id };

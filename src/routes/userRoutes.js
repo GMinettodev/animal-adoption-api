@@ -8,7 +8,7 @@ const {
 
 // Public routes
 router.post('/login', UserController.login);
-router.post('/users/', UserController.register);
+router.post('/users', UserController.register);
 
 // Protected routes
 router.get(

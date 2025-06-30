@@ -17,12 +17,12 @@ class UserService {
     if (existing) {
       throw createError(400, 'User already exists');
     }
-    
+
     // Validates the role only if it's provided
     if (user.role && !UserService.isRoleValid(user.role)) {
       throw createError(400, `Invalid role: ${role}`);
     }
-    
+
     const hashed = await bcrypt.hash(password, 10);
 
     user.password = hashed;
@@ -69,6 +69,11 @@ class UserService {
       phone,
       role,
     });
+
+    // Validates the role only if it's provided
+    if (user.role && !UserService.isRoleValid(user.role)) {
+      throw createError(400, `Invalid role: ${role}`);
+    }
 
     if (result.affectedRows === 0) {
       throw createError(404, 'User not found');

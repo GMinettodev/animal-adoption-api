@@ -61,14 +61,9 @@ class PetController {
 
     try {
       const result = await PetService.deletePet(id);
-
-      if (result.affectedRows === 0) {
-        return next(createError(404, 'Pet not found'));
-      }
-
-      return res.status(200).json({ message: 'Pet deleted successfully' });
-    } catch {
-      return next(createError(500, 'Error deleting pet'));
+      return res.status(200).json(result);
+    } catch (err) {
+      return next(err);
     }
   }
 }
