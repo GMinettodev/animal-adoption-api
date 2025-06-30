@@ -61,6 +61,12 @@ class PetService {
       throw createError(400, 'Cannot delete adopted pet');
     }
 
+    const result = await PetModel.delete(id);
+
+    if (result.affectedRows === 0) {
+      throw createError(404, 'User not found');
+    }
+
     return { message: 'Pet deleted successfully', id };
   }
 }

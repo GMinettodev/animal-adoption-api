@@ -1,8 +1,7 @@
 @baseURL = http://localhost:3000
-@userId = 7
-@petId = 3
-@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MTI0NzEwMiwiZXhwIjoxNzUxMjUwNzAyfQ.FTKl7WJqJ273Z03ISNXKr_DK3NtoT9j2B2GUR8R-DxU
-
+@userId = 11
+@petId = 7
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6ImFkb3B0ZXIiLCJpYXQiOjE3NTEyNTMxNjUsImV4cCI6MTc1MTI1Njc2NX0.dEUgvL5FLqxONt0Z8IyFxbmQis4v0gP1vKT5ph2jPGc
 #####################
 ### Public routes ###
 #####################
@@ -16,8 +15,8 @@ POST {{baseURL}}/users/
 Content-Type: application/json
 
 {
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com",
+    "name": "joao da silva",
+    "email": "joao123@example.com",
     "password": "senha123",
     "phone": "123456789110",
     "role": "admin"
@@ -40,8 +39,8 @@ POST {{baseURL}}/users/
 Content-Type: application/json
 
 {
-    "name": "Clara Soares",
-    "email": "clara_a2daopter@example.com",
+    "name": "Clara Soaresaa",
+    "email": "clara_aaaaaa2daopter@example.com",
     "password": "senha123",
     "phone": "123456789110"
 }
@@ -82,13 +81,13 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### Update user
-PUT {{baseURL}}/users/1
+PUT {{baseURL}}/users/{{userId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
   "name": "Jane aaaaaa",
-  "email": "jane.aaaaadoene@example.com",
+  "email": "jane.3232@example.com",
   "password": "newpassword123",
   "phone": "1234567890",
   "role": "admin"
@@ -149,7 +148,7 @@ Authorization: Bearer {{token}}
     "age": 3,
     "species": "Dog",
     "size": "Medium",
-    "status": "a",
+    "status": "adopted",
     "description": "Friendly and energetic"
 }
 
@@ -159,9 +158,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "Joker",
+    "name": "Jokeraa",
     "age": 4,
-    "species": "Cat",
+    "species": "Casasast",
     "size": "Large",
     "status": "Available",
     "description": "Friendly and energetic"
@@ -184,7 +183,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "user_id": 3,
-    "pet_id": 5,
+    "user_id": 10,
+    "pet_id": 15,
     "adoption_date": "2025-06-24"
 }   

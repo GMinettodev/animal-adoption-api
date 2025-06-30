@@ -18,7 +18,7 @@ app.use('/pets', petRouter);
 app.use('/adoptions', adoptionRouter);
 
 app.get('/', (req, res) => {
-  res.redirect('/users/login');
+  res.redirect('/login');
 });
 
 // Error processing Middleware
